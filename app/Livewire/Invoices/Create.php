@@ -40,7 +40,7 @@ final class Create extends Component
     }
 
     /**
-     * @param  array<int, int>  $orders
+     * @param  array<array-key, int>  $orders
      */
     public function updateOrder(array $orders): void
     {
