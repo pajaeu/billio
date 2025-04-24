@@ -43,13 +43,19 @@ final class Create extends Component
      */
     public function updateOrder(array $orders): void
     {
-        $items = [];
+        $reorderedItems = [];
 
         foreach ($orders as $position => $index) {
-            $items[$position] = $this->items[$index];
+            if (! isset($this->items[$index])) {
+                continue;
+            }
+
+            $reorderedItems[$position] = $this->items[$index];
         }
 
-        $this->items = $items;
+        ksort($reorderedItems);
+
+        $this->items = array_values($reorderedItems);
     }
 
     public function addItem(): void

@@ -21,8 +21,8 @@ return new class extends Migration
             $table->decimal('unit_price', 10);
             $table->decimal('installation_price', 10);
             $table->decimal('total', 10);
-			$table->foreignId('invoice_id')->constrained()->cascadeOnDelete();
-			$table->timestamps();
+            $table->foreignId('invoice_id')->constrained()->cascadeOnDelete();
+            $table->timestamps();
         });
     }
 
