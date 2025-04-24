@@ -9,11 +9,14 @@
 </head>
 <body class="text-slate-800 bg-slate-50">
 @auth
-    <div class="py-6 mb-6 border-b border-slate-200 bg-white">
+    <div class="py-6 mb-6 text-white shadow bg-blue-500">
         <div class="mx-auto max-w-[1100px] flex items-center">
+            <a href="{{ url('/') }}" class="block">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-10">
+            </a>
             <form action="{{ route('logout') }}" method="post" class="ms-auto">
                 @csrf
-                <button type="submit" class="cursor-pointer py-2 px-4 rounded border border-slate-200 hover:border-slate-300 transition-colors">Odhlásit se</button>
+                <button type="submit" class="cursor-pointer py-2 px-4 rounded border border-slate-200 hover:text-slate-800 hover:border-white hover:bg-white transition-colors">Odhlásit se</button>
             </form>
         </div>
     </div>
