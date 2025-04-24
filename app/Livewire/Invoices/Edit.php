@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Invoices;
 
+use App\Livewire\Concerns\HasInvoiceSettings;
 use App\Livewire\Concerns\HasItems;
 use App\Models\Invoice;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +14,7 @@ use Livewire\Component;
 
 final class Edit extends Component
 {
+    use HasInvoiceSettings;
     use HasItems;
 
     #[Locked]
@@ -30,6 +32,11 @@ final class Edit extends Component
             'installation_price' => $item->installation_price,
             'total' => $item->total,
         ])->all();
+        $this->title = $invoice->title;
+        $this->show_header = $invoice->show_header;
+        $this->show_installation_row = $invoice->show_installation_row;
+        $this->show_account_number = $invoice->show_account_number;
+        $this->show_qr_payment = $invoice->show_qr_payment;
 
         $this->recalculateTotals();
     }
@@ -43,7 +50,12 @@ final class Edit extends Component
             $this->invoice->items()->delete();
 
             $this->invoice->update([
+                'title' => $this->title,
                 'total' => $this->total,
+                'show_header' => $this->show_header,
+                'show_installation_row' => $this->show_installation_row,
+                'show_account_number' => $this->show_account_number,
+                'show_qr_payment' => $this->show_qr_payment,
             ]);
 
             $this->invoice->items()->createMany($this->items);

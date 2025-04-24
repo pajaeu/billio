@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Invoices;
 
+use App\Livewire\Concerns\HasInvoiceSettings;
 use App\Livewire\Concerns\HasItems;
 use App\Models\Invoice;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +14,7 @@ use Livewire\Component;
 
 final class Create extends Component
 {
+    use HasInvoiceSettings;
     use HasItems;
 
     public function mount(): void
@@ -27,8 +29,12 @@ final class Create extends Component
 
         DB::transaction(function (): void {
             $invoice = Invoice::query()->create([
-                'title' => Str::random(10),
+                'title' => $this->title ?? Str::random(10),
                 'total' => $this->total,
+                'show_header' => $this->show_header,
+                'show_installation_row' => $this->show_installation_row,
+                'show_account_number' => $this->show_account_number,
+                'show_qr_payment' => $this->show_qr_payment,
             ]);
 
             $invoice->items()->createMany($this->items);
