@@ -9,8 +9,6 @@
 </head>
 <body class="text-slate-800 bg-slate-50">
 <main class="mx-auto max-w-[1100px]">{{ $slot }}</main>
-<div class="p-4 text-center text-slate-500 text-sm">
-    Vytvořil Pavel Skrbel | verze 2.0
-</div>
+<x-footer/>
 </body>
 </html>
