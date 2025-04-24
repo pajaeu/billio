@@ -12,7 +12,7 @@ final class Index extends Component
 {
     public function delete(int $id): void
     {
-        $invoice = Invoice::findOrFail($id);
+        $invoice = Invoice::query()->findOrFail($id);
 
         $invoice->delete();
     }
@@ -20,7 +20,7 @@ final class Index extends Component
     public function render(): View
     {
         return view('livewire.invoices.index', [
-            'invoices' => Invoice::query()->paginate(12),
+            'invoices' => Invoice::query()->latest()->paginate(12),
         ]);
     }
 }
