@@ -82,7 +82,7 @@ final class Create extends Component
         ]);
 
         DB::transaction(function (): void {
-            $invoice = Invoice::create([
+            $invoice = Invoice::query()->create([
                 'title' => Str::random(10),
                 'total' => $this->total,
             ]);
