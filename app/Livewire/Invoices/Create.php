@@ -23,6 +23,7 @@ final class Create extends Component
     public function save(): void
     {
         $this->validateItems();
+        $this->recalculateTotals();
 
         DB::transaction(function (): void {
             $invoice = Invoice::query()->create([

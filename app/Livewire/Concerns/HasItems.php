@@ -10,6 +10,7 @@ trait HasItems
 {
     /**
      * @var array<int, array{
+     *     id: ?int,
      *     name: string,
      *     quantity: string|int,
      *     unit: string,
@@ -31,6 +32,7 @@ trait HasItems
     public function addItem(): void
     {
         $this->items[] = [
+            'id' => null,
             'name' => '',
             'quantity' => 1,
             'unit' => '',
