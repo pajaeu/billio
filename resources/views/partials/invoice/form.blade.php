@@ -6,10 +6,10 @@
         </svg>
     </button>
     <div class="p-6 md:p-12 border-b border-slate-200" x-show="showSettings" x-transition>
+        <div class="max-w-md mx-auto mb-4">
+            <input type="text" wire:model="title" class="w-full py-2 px-4 outline-none border rounded bg-white @error('title') border-red-500 @else border-slate-300 @enderror" placeholder="Titulek faktury">
+        </div>
         <div class="max-w-max mx-auto">
-            <div class="mb-4">
-                <input type="text" wire:model="title" class="w-full py-2 px-4 outline-none border rounded bg-white @error('title') border-red-500 @else border-slate-300 @enderror" placeholder="Titulek faktury">
-            </div>
             <div class="mb-4">
                 <x-form.checkbox name="show_header" label="Zobrazit hlavičku"/>
             </div>
