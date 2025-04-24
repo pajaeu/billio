@@ -29,7 +29,9 @@ final class InvoiceController
             now()->format('d-m-Y'),
         ]);
 
-        return Pdf::view('pdf.invoice', ['invoice' => $invoice])
-            ->name(Str::lower(Str::slug($name)));
+        /** @var PdfBuilder $pdf */
+        $pdf = Pdf::view('pdf.invoice', ['invoice' => $invoice]);
+
+        return $pdf->name(Str::lower(Str::slug($name)));
     }
 }
