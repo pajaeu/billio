@@ -100,7 +100,7 @@ final class Create extends Component
 
     private function recalculateTotals(): void
     {
-        $this->items = collect($this->items)->map(function (array $item): array {
+        $items = collect($this->items)->map(function (array $item): array {
             $quantity = $item['quantity'];
             $unitPrice = $item['unit_price'];
             $installationPrice = $item['installation_price'];
@@ -108,8 +108,12 @@ final class Create extends Component
             $item['total'] = $quantity * ($unitPrice + $installationPrice);
 
             return $item;
-        })->all();
+        });
 
-        $this->total = array_sum(array_column($this->items, 'total'));
+        $total = $items->sum('total');
+
+        $this->items = $items->all();
+
+        $this->total = is_numeric($total) ? (float) $total : 0.0;
     }
 }
