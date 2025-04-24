@@ -19,23 +19,13 @@
     <div class="text-lg mb-8">{{ $invoice->title }}</div>
     <div class="flex gap-2 text-sm font-bold items-center border-b-2 border-gray-200">
         <div class="w-10"></div>
-        <div class="w-1/5 p-2">
-            Materiál
-        </div>
-        <div class="w-28 p-2">
-            Jednotka
-        </div>
-        <div class="w-1/5 p-2">
-            Cena
-        </div>
+        <div class="w-1/5 p-2">Materiál</div>
+        <div class="w-28 p-2">Jednotka</div>
+        <div class="w-1/5 p-2">Cena</div>
         @if($invoice->show_installation_row)
-            <div class="w-1/6 p-2">
-                Montáž
-            </div>
+            <div class="w-1/6 p-2">Montáž</div>
         @endif
-        <div class="flex-1 p-2 text-end">
-            Celkem
-        </div>
+        <div class="flex-1 p-2 text-end">Celkem</div>
     </div>
     @foreach($invoice->items as $index => $item)
         <div class="flex gap-2 text-sm items-center">
