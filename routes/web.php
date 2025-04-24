@@ -9,10 +9,13 @@ Route::group(['as' => 'social.', 'prefix' => 'social'], function () {
     Route::get('/auth/google/callback', [App\Http\Controllers\SocialAuth\GoogleController::class, 'callback'])->name('google.callback');
 });
 
-Route::view('login', 'auth.login')->name('login')->middleware('guest');
+Route::group(['middleware' => 'guest'], function () {
+    Route::view('/login', 'auth.login')->name('login');
+});
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', App\Livewire\Invoices\Index::class)->name('invoices.index');
+    Route::post('/logout', App\Http\Controllers\Auth\LogoutController::class)->name('logout');
     Route::get('/faktura', App\Livewire\Invoices\Create::class)->name('invoices.create');
     Route::get('/faktura/{invoice}', App\Livewire\Invoices\Edit::class)->name('invoices.edit');
     Route::get('/faktura/{invoice}/pdf', [App\Http\Controllers\InvoiceController::class, 'print'])->name('invoices.print');

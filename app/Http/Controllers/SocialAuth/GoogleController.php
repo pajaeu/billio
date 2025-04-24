@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\SocialAuth;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -35,7 +34,7 @@ final class GoogleController
             'google_refresh_token' => $socialiteUser->refreshToken,
         ]);
 
-        Auth::login($user);
+        auth()->login($user);
 
         return to_route('invoices.index');
     }
