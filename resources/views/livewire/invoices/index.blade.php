@@ -31,6 +31,7 @@
             </div>
         </div>
     @empty
+        <div class="py-10 px-5 text-center text-slate-500">Ještě nemáte žádnou vytvořenou fakturu.</div>
     @endforelse
 
     {{ $invoices->links() }}

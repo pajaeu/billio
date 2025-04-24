@@ -54,19 +54,19 @@
                             </svg>
                         </button>
                     </div>
-                    <div class="w-1/4 border border-slate-300 rounded">
+                    <div class="w-1/4 border @error('items.' . $index . '.name') border-red-500 @else border-slate-300 @enderror rounded">
                         <input type="text" wire:model="items.{{ $index }}.name" placeholder="Materiál" class="w-full p-2 outline-none">
                     </div>
-                    <div class="w-16 border border-slate-300 rounded">
+                    <div class="w-16 border @error('items.' . $index . '.quantity') border-red-500 @else border-slate-300 @enderror rounded">
                         <input type="number" wire:model.live="items.{{ $index }}.quantity" class="w-full p-2 outline-none" placeholder="" min="1">
                     </div>
-                    <div class="w-20 border border-slate-300 rounded">
+                    <div class="w-20 border @error('items.' . $index . '.unit') border-red-500 @else border-slate-300 @enderror rounded">
                         <input type="text" wire:model.live="items.{{ $index }}.unit" class="w-full p-2 outline-none" placeholder="ks">
                     </div>
-                    <div class="w-1/6 border border-slate-300 rounded">
+                    <div class="w-1/6 border @error('items.' . $index . '.unit_price') border-red-500 @else border-slate-300 @enderror rounded">
                         <input type="number" step="0.01" wire:model.live="items.{{ $index }}.unit_price" class="w-full p-2 outline-none" placeholder="">
                     </div>
-                    <div class="w-1/6 border border-slate-300 rounded">
+                    <div class="w-1/6 border @error('items.' . $index . '.installation_price') border-red-500 @else border-slate-300 @enderror rounded">
                         <input type="number" step="0.01" wire:model.live="items.{{ $index }}.installation_price" class="w-full p-2 outline-none" placeholder="">
                     </div>
                     <div class="flex-1 p-2 border border-slate-300 bg-slate-100 rounded">

@@ -73,6 +73,14 @@ final class Create extends Component
 
     public function save(): void
     {
+        $this->validate([
+            'items.*.name' => 'required|string',
+            'items.*.quantity' => 'required|integer',
+            'items.*.unit' => 'required|string',
+            'items.*.unit_price' => 'required|numeric',
+            'items.*.installation_price' => 'required|numeric',
+        ]);
+
         DB::transaction(function (): void {
             $invoice = Invoice::create([
                 'title' => Str::random(10),
@@ -93,9 +101,9 @@ final class Create extends Component
     private function recalculateTotals(): void
     {
         $this->items = collect($this->items)->map(function (array $item): array {
-            $quantity = (int) $item['quantity'];
-            $unitPrice = (float) $item['unit_price'];
-            $installationPrice = (float) $item['installation_price'];
+            $quantity = $item['quantity'];
+            $unitPrice = $item['unit_price'];
+            $installationPrice = $item['installation_price'];
 
             $item['total'] = $quantity * ($unitPrice + $installationPrice);
 
