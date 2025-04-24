@@ -28,7 +28,7 @@
 <div class="p-6 md:p-12">
     <div class="flex gap-2 mb-2 text-sm font-semibold items-center">
         <div class="w-10"></div>
-        <div class="w-1/4">Materiál</div>
+        <div class="@if($show_installation_row) w-1/4 @else w-1/3 @endif">Materiál</div>
         <div class="w-16">Počet</div>
         <div class="w-20">Jednotka</div>
         <div class="w-1/6">Cena</div>
@@ -61,7 +61,7 @@
                         </svg>
                     </button>
                 </div>
-                <div class="w-1/4 border @error('items.' . $index . '.name') border-red-500 @else border-slate-300 @enderror rounded">
+                <div class="@if($show_installation_row) w-1/4 @else w-1/3 @endif border @error('items.' . $index . '.name') border-red-500 @else border-slate-300 @enderror rounded">
                     <input type="text" wire:model="items.{{ $index }}.name" placeholder="Materiál" class="w-full p-2 outline-none">
                 </div>
                 <div class="w-16 border @error('items.' . $index . '.quantity') border-red-500 @else border-slate-300 @enderror rounded">

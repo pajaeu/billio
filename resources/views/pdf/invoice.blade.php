@@ -19,8 +19,8 @@
     <div class="text-lg mb-8">{{ $invoice->title }}</div>
     <div class="flex gap-2 text-sm font-bold items-center border-b-2 border-gray-200">
         <div class="w-10"></div>
-        <div class="w-1/5 p-2">Materiál</div>
-        <div class="w-28 p-2">Jednotka</div>
+        <div class="@if($invoice->show_installation_row) w-1/5 @else w-1/3 @endif p-2">Materiál</div>
+        <div class="@if($invoice->show_installation_row) w-28 @else w-32 @endif p-2">Jednotka</div>
         <div class="w-1/5 p-2">Cena</div>
         @if($invoice->show_installation_row)
             <div class="w-1/6 p-2">Montáž</div>
@@ -30,8 +30,8 @@
     @foreach($invoice->items as $index => $item)
         <div class="flex gap-2 text-sm items-center">
             <div class="w-10 p-2">{{ $index + 1 }}</div>
-            <div class="w-1/5 p-2">{{ $item->name }}</div>
-            <div class="w-28 p-2">{{ $item->quantity }} {{ $item->unit }}</div>
+            <div class="@if($invoice->show_installation_row) w-1/5 @else w-1/3 @endif p-2">{{ $item->name }}</div>
+            <div class="@if($invoice->show_installation_row) w-28 @else w-32 @endif p-2">{{ $item->quantity }} {{ $item->unit }}</div>
             <div class="w-1/5 p-2">{{ number_format($item->unit_price, 2, ',', ' ') }} Kč</div>
             @if($invoice->show_installation_row)
                 <div class="w-1/6 p-2">{{ number_format($item->installation_price, 2, ',', ' ') }} Kč</div>
