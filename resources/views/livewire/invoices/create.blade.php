@@ -40,7 +40,7 @@
                     onEnd: (evt) => {
                         const newOrder = Array.from(el.children)
                             .map(child => child.getAttribute('data-id'));
-                        @this.call('updateOrder', newOrder);
+                        @this.call('updateItemOrder', newOrder);
                     }
                 });
             }
