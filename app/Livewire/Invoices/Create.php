@@ -20,8 +20,7 @@ final class Create extends Component
      *     unit: string,
      *     unit_price: string|float,
      *     installation_price: string|float,
-     *     total: float,
-     *     position: int
+     *     total: float
      * }>
      */
     public array $items = [];
@@ -44,9 +43,13 @@ final class Create extends Component
      */
     public function updateOrder(array $orders): void
     {
+        $items = [];
+
         foreach ($orders as $position => $index) {
-            $this->items[$index]['position'] = $position + 1;
+            $items[$position] = $this->items[$index];
         }
+
+        $this->items = $items;
     }
 
     public function addItem(): void
@@ -58,7 +61,6 @@ final class Create extends Component
             'unit_price' => 0,
             'installation_price' => 0,
             'total' => 0,
-            'position' => count($this->items) + 1,
         ];
 
         $this->recalculateTotals();
@@ -66,9 +68,9 @@ final class Create extends Component
 
     public function removeItem(int $index): void
     {
-		unset($this->items[$index]);
+        unset($this->items[$index]);
 
-		$this->items = array_values($this->items);
+        $this->items = array_values($this->items);
 
         $this->recalculateTotals();
     }

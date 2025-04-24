@@ -45,8 +45,8 @@
                 });
             }
         }">
-            @foreach (collect($items)->sortBy('position')->toArray() as $index => $item)
-                <div class="flex gap-2 mb-2 items-center" data-id="{{ $index }}">
+            @foreach ($items as $index => $item)
+                <div wire:key="item_{{ $index }}" class="flex gap-2 mb-2 items-center" data-id="{{ $index }}">
                     <div class="w-10">
                         <button class="cursor-move text-slate-300 hover:text-slate-500 transition-colors handle">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
