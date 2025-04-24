@@ -57,5 +57,7 @@
         </div>
     @endforelse
 
-    {{ $invoices->links() }}
+    <div class="p-6 md:px-12">
+        {{ $invoices->links('pagination.livewire') }}
+    </div>
 </div>

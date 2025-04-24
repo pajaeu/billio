@@ -7,9 +7,12 @@ namespace App\Livewire\Invoices;
 use App\Models\Invoice;
 use Illuminate\View\View;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 final class Index extends Component
 {
+	use WithPagination;
+
     public function delete(int $id): void
     {
         $invoice = Invoice::query()->findOrFail($id);
