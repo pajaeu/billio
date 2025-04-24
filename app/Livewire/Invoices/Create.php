@@ -66,7 +66,9 @@ final class Create extends Component
 
     public function removeItem(int $index): void
     {
-        unset($this->items[$index]);
+		unset($this->items[$index]);
+
+		$this->items = array_values($this->items);
 
         $this->recalculateTotals();
     }
