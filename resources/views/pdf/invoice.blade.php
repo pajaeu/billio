@@ -42,16 +42,16 @@
             <div class="w-10 p-2">{{ $index + 1 }}</div>
             <div class="w-1/5 p-2">{{ $item->name }}</div>
             <div class="w-28 p-2">{{ $item->quantity }} {{ $item->unit }}</div>
-            <div class="w-1/5 p-2">{{ number_format($item->unit_price, 2, ',', ' ') . ' Kč' }}</div>
+            <div class="w-1/5 p-2">{{ number_format($item->unit_price, 2, ',', ' ') }} Kč</div>
             @if($invoice->show_installation_row)
-                <div class="w-1/6 p-2">{{ number_format($item->installation_price, 2, ',', ' ') . ' Kč' }}</div>
+                <div class="w-1/6 p-2">{{ number_format($item->installation_price, 2, ',', ' ') }} Kč</div>
             @endif
-            <div class="flex-1 p-2 text-end">{{ number_format($item->total, 2, ',', ' ') . ' Kč' }}</div>
+            <div class="flex-1 p-2 text-end">{{ number_format($item->total, 2, ',', ' ') }} Kč</div>
         </div>
     @endforeach
     <div class="ms-1/2 mt-12 text-end text-lg font-bold">
         <span class="me-10">Celkem k platbě:</span>
-        <span>{{ number_format($invoice->total, 2, ',', ' ') . ' Kč' }}</span>
+        <span>{{ number_format($invoice->total, 2, ',', ' ') }} Kč</span>
     </div>
 </body>
 </html>
