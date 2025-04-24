@@ -1,4 +1,4 @@
-<div class="rounded shadow bg-white">
+<div class="rounded-b shadow bg-white">
     <div class="p-6 md:px-12 flex items-center border-b border-slate-200">
         <h1 class="text-2xl font-semibold">Faktura číslo {{ $invoice->id }}</h1>
         <a href="{{ route('invoices.index') }}" wire:navigate class="ms-auto cursor-pointer py-2 px-2.5 flex gap-1 items-center rounded text-sm font-semibold border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-colors">
