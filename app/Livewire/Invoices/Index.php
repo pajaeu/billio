@@ -11,7 +11,7 @@ use Livewire\WithPagination;
 
 final class Index extends Component
 {
-	use WithPagination;
+    use WithPagination;
 
     public function delete(int $id): void
     {
@@ -23,7 +23,7 @@ final class Index extends Component
     public function render(): View
     {
         return view('livewire.invoices.index', [
-            'invoices' => Invoice::query()->latest()->paginate(12),
+            'invoices' => Invoice::query()->latest()->paginate(24),
         ]);
     }
 }
