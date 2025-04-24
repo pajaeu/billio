@@ -51,6 +51,8 @@ trait HasItems
         $this->items = array_values($this->items);
 
         $this->recalculateTotals();
+
+        $this->resetValidation('items.*');
     }
 
     /**
@@ -71,6 +73,8 @@ trait HasItems
         ksort($reorderedItems);
 
         $this->items = array_values($reorderedItems);
+
+        $this->resetValidation('items.*');
     }
 
     private function recalculateTotals(): void
