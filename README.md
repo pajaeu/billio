@@ -1,6 +1,10 @@
-## EleInvoicer
+<p align="center">
+    <img src="./art/cover.png" width="600">
+</p>
 
-### A simple invoicing app designed specifically for electricians, written in TALL stack.
+------
+
+## A simple invoicing app designed specifically for electricians, written in TALL stack.
 
 This application is a rewrite of the old version, which was still used today, but in any case it did not allow moving items or saving individual invoices and editing them.
 
