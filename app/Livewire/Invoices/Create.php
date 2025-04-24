@@ -16,10 +16,10 @@ final class Create extends Component
     /**
      * @var array<int, array{
      *     name: string,
-     *     quantity: int,
+     *     quantity: string|int,
      *     unit: string,
-     *     unit_price: float,
-     *     installation_price: float,
+     *     unit_price: string|float,
+     *     installation_price: string|float,
      *     total: float,
      *     position: int
      * }>
@@ -40,7 +40,7 @@ final class Create extends Component
     }
 
     /**
-     * @param  array<array-key, int>  $orders
+     * @param  array<int, int>  $orders
      */
     public function updateOrder(array $orders): void
     {
@@ -101,9 +101,9 @@ final class Create extends Component
     private function recalculateTotals(): void
     {
         $items = collect($this->items)->map(function (array $item): array {
-            $quantity = $item['quantity'];
-            $unitPrice = $item['unit_price'];
-            $installationPrice = $item['installation_price'];
+            $quantity = (int) $item['quantity'];
+            $unitPrice = (float) $item['unit_price'];
+            $installationPrice = (float) $item['installation_price'];
 
             $item['total'] = $quantity * ($unitPrice + $installationPrice);
 
