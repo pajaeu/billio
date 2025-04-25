@@ -7,7 +7,7 @@
     <title>Billio - jednoduchá fakturace pro elektrikáře</title>
     @vite(['resources/js/app.js'])
 </head>
-<body class="text-slate-800 bg-slate-50">
+<body class="text-slate-800 bg-slate-100">
 @auth
     <div class="py-6 mb-6 text-white shadow bg-blue-500">
         <div class="mx-auto max-w-[1100px] flex items-center">
