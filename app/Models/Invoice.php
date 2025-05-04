@@ -37,4 +37,9 @@ final class Invoice extends Model
     {
         return $this->hasMany(InvoiceItem::class);
     }
+
+	public function qrPaymentSrc(): string
+	{
+		return sprintf('https://api.paylibo.com/paylibo/generator/czech/image?accountPrefix=107&accountNumber=4782730267&bankCode=0100&amount=%d&currency=CZK', $this->total);
+	}
 }

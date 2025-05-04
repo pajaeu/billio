@@ -16,7 +16,8 @@ trait HasItems
      *     unit: string,
      *     unit_price: string|float,
      *     installation_price: string|float,
-     *     total: float
+     *     total: float,
+     *     is_heading: bool
      * }>
      */
     public array $items = [];
@@ -39,9 +40,24 @@ trait HasItems
             'unit_price' => 0,
             'installation_price' => 0,
             'total' => 0,
+            'is_heading' => false,
         ];
 
         $this->recalculateTotals();
+    }
+
+    public function addHeading(): void
+    {
+        $this->items[] = [
+            'id' => null,
+            'name' => '',
+            'quantity' => 1,
+            'unit' => 'ks',
+            'unit_price' => 0,
+            'installation_price' => 0,
+            'total' => 0,
+            'is_heading' => true,
+        ];
     }
 
     public function removeItem(int $index): void

@@ -10,7 +10,7 @@ final class Git
 {
     public function getLatestReleaseTag(): string
     {
-        return trim(
+        return mb_trim(
             Process::path(base_path())->run(['git', 'describe', '--tags', '--abbrev=0'])->output(),
         );
     }

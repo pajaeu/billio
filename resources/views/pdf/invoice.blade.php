@@ -16,7 +16,12 @@
             Tel: 604 539 141, e-mail: skrbel.pavel@seznam.cz
         </div>
     @endif
-    <div class="text-lg mb-8">{{ $invoice->title }}</div>
+    <div class="text-lg mb-8">
+        <div>{{ $invoice->title }}</div>
+        @if($invoice->show_account_number)
+            <div class="mt-1 text-base">Číslo účtu: 107-4782730267/0100</div>
+        @endif
+    </div>
     <div class="flex gap-2 text-sm font-bold items-center border-b-2 border-gray-200">
         <div class="w-10"></div>
         <div class="@if($invoice->show_installation_row) w-1/5 @else w-1/3 @endif p-2">Materiál</div>
@@ -27,21 +32,31 @@
         @endif
         <div class="flex-1 p-2 text-end">Celkem</div>
     </div>
+    @php($itemIndex = 1)
     @foreach($invoice->items as $index => $item)
         <div class="flex gap-2 text-sm items-center">
-            <div class="w-10 p-2">{{ $index + 1 }}</div>
-            <div class="@if($invoice->show_installation_row) w-1/5 @else w-1/3 @endif p-2">{{ $item->name }}</div>
-            <div class="@if($invoice->show_installation_row) w-28 @else w-32 @endif p-2">{{ $item->quantity }} {{ $item->unit }}</div>
-            <div class="w-1/5 p-2">{{ number_format($item->unit_price, 2, ',', ' ') }} Kč</div>
-            @if($invoice->show_installation_row)
-                <div class="w-1/6 p-2">{{ number_format($item->installation_price, 2, ',', ' ') }} Kč</div>
+            @if($item->is_heading)
+                <div class="w-full px-2 py-1 font-semibold text-lg">{{ $item->name }}</div>
+                @php($itemIndex = 1)
+            @else
+                <div class="w-10 px-2 py-1">{{ $itemIndex++ }}</div>
+                <div class="@if($invoice->show_installation_row) w-1/5 @else w-1/3 @endif px-2 py-1">{{ $item->name }}</div>
+                <div class="@if($invoice->show_installation_row) w-28 @else w-32 @endif px-2 py-1">{{ $item->quantity }} {{ $item->unit }}</div>
+                <div class="w-1/5 px-2 py-1">{{ number_format($item->unit_price, 2, ',', ' ') }} Kč</div>
+                @if($invoice->show_installation_row)
+                    <div class="w-1/6 px-2 py-1">{{ number_format($item->installation_price, 2, ',', ' ') }} Kč</div>
+                @endif
+                <div class="flex-1 px-2 py-1 text-end">{{ number_format($item->total, 2, ',', ' ') }} Kč</div>
             @endif
-            <div class="flex-1 p-2 text-end">{{ number_format($item->total, 2, ',', ' ') }} Kč</div>
         </div>
     @endforeach
     <div class="ms-1/2 mt-12 text-end text-lg font-bold">
         <span class="me-10">Celkem k platbě:</span>
         <span>{{ number_format($invoice->total, 2, ',', ' ') }} Kč</span>
+    </div>
+    <div class="text-end mt-6">
+        <p>Zaplaťte jednoduše pomocí QR kódu:</p>
+        <img src="{{ $invoice->qrPaymentSrc() }}" alt="QR" class="ms-auto size-28">
     </div>
 </body>
 </html>

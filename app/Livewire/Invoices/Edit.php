@@ -31,6 +31,7 @@ final class Edit extends Component
             'unit_price' => $item->unit_price,
             'installation_price' => $item->installation_price,
             'total' => $item->total,
+            'is_heading' => $item->is_heading ?? false,
         ])->all();
         $this->title = $invoice->title;
         $this->show_header = $invoice->show_header;

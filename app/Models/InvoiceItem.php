@@ -19,10 +19,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $invoice_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @property bool $is_heading
  * @property-read Invoice $invoice
  */
 final class InvoiceItem extends Model
 {
+    protected $casts = [
+        'is_heading' => 'boolean',
+    ];
+
     /** @return BelongsTo<Invoice, covariant $this> */
     public function invoice(): BelongsTo
     {
