@@ -62,8 +62,8 @@
                     </button>
                 </div>
                 @if($item['is_heading'])
-                    <div class="flex-1 border @error('items.' . $index . '.name') border-red-500 @else border-slate-300 @enderror rounded">
-                        <input type="text" wire:model="items.{{ $index }}.name" placeholder="Text" class="w-full p-2 outline-none">
+                    <div class="flex-1 border-b @error('items.' . $index . '.name') border-red-500 @else border-slate-300 @enderror">
+                        <input type="text" wire:model="items.{{ $index }}.name" placeholder="Text nadpisu" class="w-full p-2 outline-none">
                     </div>
                 @else
                     <div class="@if($show_installation_row) w-1/4 @else w-1/3 @endif border @error('items.' . $index . '.name') border-red-500 @else border-slate-300 @enderror rounded">
