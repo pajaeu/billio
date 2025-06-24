@@ -30,7 +30,8 @@ final class InvoiceController
         ]);
 
         /** @var PdfBuilder $pdf */
-        $pdf = Pdf::view('pdf.invoice', ['invoice' => $invoice]);
+        $pdf = Pdf::view('pdf.invoice', ['invoice' => $invoice])
+			->margins(10, 10, 10, 10);
 
         return $pdf->name(Str::lower(Str::slug($name)));
     }

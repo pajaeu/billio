@@ -7,7 +7,7 @@
     <title>{{ $invoice->title }}</title>
     @vite(['resources/css/app.css'])
 </head>
-<body class="text-slate-900 p-10">
+<body class="text-slate-900">
 @if($invoice->show_header)
     <div class="text-lg font-bold leading-tight mb-6">
         <span class="text-xl">EL-GAS</span><br/>
@@ -54,9 +54,11 @@
     <span class="me-10">Celkem k platbě:</span>
     <span>{{ number_format($invoice->total, 2, ',', ' ') }} Kč</span>
 </div>
-<div class="text-end mt-6">
-    <p>Zaplaťte jednoduše pomocí QR kódu:</p>
-    <img src="{{ $invoice->qrPaymentSrc() }}" alt="QR" class="ms-auto size-28">
-</div>
+@if($invoice->show_qr_payment)
+    <div class="text-end mt-6">
+        <p>Zaplaťte jednoduše pomocí QR kódu:</p>
+        <img src="{{ $invoice->qrPaymentSrc() }}" alt="QR" class="ms-auto size-28">
+    </div>
+@endif
 </body>
 </html>
