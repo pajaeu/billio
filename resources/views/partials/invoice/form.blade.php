@@ -1,3 +1,6 @@
+@props([
+	'type' => 'create'
+])
 <div x-data="{ showSettings: false }" class="transition-colors" :class="showSettings ? 'bg-slate-50' : ''">
     <button @click="showSettings = !showSettings" class="cursor-pointer mx-auto flex items-center gap-2 py-2 px-4 text-sm text-slate-500 rounded-b border border-t-0 border-slate-200 transition-colors" :class="showSettings ? 'text-slate-800 bg-white' : 'hover:text-slate-600 hover:bg-slate-50'">
         <span>Rozšířené nastavení</span>
@@ -28,6 +31,9 @@
 <div class="p-6 md:p-12">
     <div class="flex gap-2 mb-2 text-sm font-semibold items-center">
         <div class="w-10"></div>
+        @if($type === 'edit')
+            <div class="w-6"></div>
+        @endif
         <div class="@if($show_installation_row) w-1/4 @else w-1/3 @endif">Materiál</div>
         <div class="w-16">Počet</div>
         <div class="w-20">Jednotka</div>
@@ -52,6 +58,7 @@
                 });
             }
         }">
+        @php($itemIndex = 1)
         @foreach ($items as $index => $item)
             <div wire:key="item_{{ $index }}" class="flex gap-2 mb-2 items-center" data-id="{{ $index }}">
                 <div class="w-10">
@@ -65,7 +72,11 @@
                     <div class="flex-1 border-b @error('items.' . $index . '.name') border-red-500 @else border-slate-300 @enderror">
                         <input type="text" wire:model="items.{{ $index }}.name" placeholder="Text nadpisu" class="w-full p-2 outline-none">
                     </div>
+                    @php($itemIndex = 1)
                 @else
+                    @if($type === 'edit')
+                        <div class="w-6 text-sm text-slate-500">{{ $itemIndex++ }}</div>
+                    @endif
                     <div class="@if($show_installation_row) w-1/4 @else w-1/3 @endif border @error('items.' . $index . '.name') border-red-500 @else border-slate-300 @enderror rounded">
                         <input type="text" wire:model="items.{{ $index }}.name" placeholder="Materiál" class="w-full p-2 outline-none">
                     </div>

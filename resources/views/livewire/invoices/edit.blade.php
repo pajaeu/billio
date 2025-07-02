@@ -8,5 +8,5 @@
             <span>Zpět</span>
         </a>
     </div>
-    @include('partials.invoice.form')
+    @include('partials.invoice.form', ['type' => 'edit'])
 </div>
