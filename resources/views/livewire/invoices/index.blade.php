@@ -10,7 +10,7 @@
     </div>
     @forelse($invoices as $invoice)
         <div wire:key="invoice_{{ $invoice->id }}" class="flex border-b border-slate-200">
-            <div class="ps-6 md:ps-12 p-2 w-2/4">{{ $invoice->title }}</div>
+            <div class="ps-6 md:ps-12 p-2 w-2/4">{{ strip_tags(str_replace('<br/>', ' ', $invoice->title)) }}</div>
             <div class="p-2 w-1/4 text-slate-500">{{ $invoice->created_at->format('d. m. Y H:i:s') }}</div>
             <div class="ms-auto p-2 text-end">{{ number_format($invoice->total, 2, ',', ' ') }} Kč</div>
             <div class="pe-6 md:pe-12 p-2">

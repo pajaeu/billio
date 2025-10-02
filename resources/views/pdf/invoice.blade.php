@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $invoice->title }}</title>
+    <title>{{ strip_tags($invoice->title) }}</title>
     @vite(['resources/css/app.css'])
 </head>
 <body class="text-slate-900">
@@ -17,7 +17,7 @@
     </div>
 @endif
 <div class="text-lg mb-8">
-    <div>{{ $invoice->title }}</div>
+    <div>{!! $invoice->title !!}</div>
     @if($invoice->show_account_number)
         <div class="mt-1 text-base">Číslo účtu: 107-4782730267/0100</div>
     @endif
