@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Invoice;
 use Illuminate\Support\Str;
+use Spatie\Browsershot\Browsershot;
 use Spatie\LaravelPdf\Facades\Pdf;
 use Spatie\LaravelPdf\PdfBuilder;
 
@@ -31,7 +32,8 @@ final class InvoiceController
 
         /** @var PdfBuilder $pdf */
         $pdf = Pdf::view('pdf.invoice', ['invoice' => $invoice])
-            ->margins(10, 10, 10, 10);
+			->withBrowsershot(fn (Browsershot $browsershot) => $browsershot->waitUntilNetworkIdle())
+			->margins(10, 10, 10, 10);
 
         return $pdf->name(Str::lower(Str::slug($name)));
     }
