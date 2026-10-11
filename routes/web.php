@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['as' => 'social.', 'prefix' => 'social'], function () {
@@ -11,6 +12,7 @@ Route::group(['as' => 'social.', 'prefix' => 'social'], function () {
 
 Route::group(['middleware' => 'guest'], function () {
     Route::view('/login', 'auth.login')->name('login');
+    Route::post('/authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
 });
 
 Route::group(['middleware' => 'auth'], function () {

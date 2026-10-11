@@ -2,6 +2,21 @@
     <div class="w-full max-w-md mx-auto mt-12 md:mt-24">
         <h1 class="mb-8 text-center text-4xl font-medium">Vítejte zpátky!</h1>
         <div class="p-5 md:p-10 rounded shadow bg-white">
+            <form action="{{ route('authenticate') }}" method="post">
+                @csrf
+                <div class="mb-3 space-y-2">
+                    <label for="email" class="block">E-mailová adresa</label>
+                    <input type="text" name="email" id="email" placeholder="Zadejte e-mailovou adresu" class="w-full p-2 outline-none border border-slate-300 rounded">
+                </div>
+                <div class="mb-6 space-y-2">
+                    <label for="email" class="block">Heslo</label>
+                    <input type="password" name="password" id="password" placeholder="Zadejte heslo" class="w-full p-2 outline-none border border-slate-300 rounded">
+                </div>
+                <button type="submit" class="cursor-pointer w-full p-3 flex justify-center gap-4 items-center rounded text-white bg-cyan-500 hover:bg-cyan-600 transition-colors">Přihlásit</button>
+            </form>
+            <div class="pt-3 mt-6 mb-3 border-t border-slate-200 text-center text-slate-500 text-sm">
+                <span>nebo</span>
+            </div>
             <a href="{{ route('social.google.redirect') }}" class="cursor-pointer w-full p-3 flex justify-center gap-4 items-center rounded border border-slate-200 hover:border-slate-300 transition-colors">
                 <svg class="size-7" viewBox="-3 0 262 262" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
                     <path d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"
